@@ -18,9 +18,7 @@ describe("parking lot problem for usercase 1", () => {
 
     it("Parking lot owner should know when parking is full when owner has parked is car", () => {
         let VehicleObject = new Parking(1);
-        VehicleObject.park(car);
-        let result= VehicleObject.checkLotIsFull();
-        assert.equal("capacity is full", result);
+        let result=VehicleObject.park(car);
+        assert.equal(true, result);
     });
-    
 });

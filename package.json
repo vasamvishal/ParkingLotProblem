@@ -10,5 +10,8 @@
     "test": "mocha"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "nyc": "^15.0.0"
+  }
 }

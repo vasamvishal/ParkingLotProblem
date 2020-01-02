@@ -1,4 +1,6 @@
 //Welcome to parking lot problem//
+var ParkingOwner=require("../PARKINGLOTPROBLEM/ParkingOwner");
+var parkingOwner =new ParkingOwner();
 class Parking{
     car;
     intialCapacity=0;
@@ -7,9 +9,14 @@ class Parking{
         this.fullCapacity=fullCapacity;
     }
     park(car){
-        this.car=car;
-        this.intialCapacity++;
-        return true;
+        let result=parkingOwner.checkLotIsFull(this.intialCapacity,this.fullCapacity);
+        if(result==true){
+            this.car=car;
+            this.intialCapacity++;
+            return true;
+        }else{
+            return false;
+        }
     }
     unPark()
     {
@@ -17,13 +24,6 @@ class Parking{
         this.car=null;
         return true;
     }
-    checkLotIsFull()
-    {
-        if(this.intialCapacity==this.fullCapacity){
-            return "capacity is full";
-        }else{
-            return "capacity is not full";
-        }
-    }
-}
+  } 
+
 module.exports=Parking;
