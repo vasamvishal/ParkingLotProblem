@@ -1,8 +1,8 @@
+class AirportSecurity{
 
-class ParkingOwner{
     parkinglotIsFull(isFull) {
         if (isFull === true) {
             console.log("Parking lot is full");
         }
     }
-}module.exports=ParkingOwner;
+}module.exports=AirportSecurity;
