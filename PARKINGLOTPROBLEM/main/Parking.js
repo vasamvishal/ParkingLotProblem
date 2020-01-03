@@ -1,9 +1,5 @@
 //Welcome to parking lot problem//
-// const ParkingOwner = require("../PARKINGLOTPROBLEM/ParkingOwner");
-// let AirportSecurity=require("../PARKINGLOTPROBLEM/AirportSecurity");
-let Test=require("../PARKINGLOTPROBLEM/Test");
-// const parkingOwner = new ParkingOwner();
-// const airportSecurity=new AirportSecurity();
+let ObserverPattern=require("./ObserverPattern");
 class Parking {
     intialCapacity = 0;
     capacity;
@@ -13,34 +9,45 @@ class Parking {
         this.capacity = capacity;
     }
 
-    park = (car) => {
+    park = (car,observer) => {
+        for(let i=0;i<this.capacityArray.length;i++)
+        {
+            if(this.capacityArray[i] === car)
+            {
+               throw new Error("Same car cannot be entered");
+            }
+        }
         const isLotFull = this.#checkLotIsFull(this.capacityArray, this.capacity);
         if (isLotFull === false) {
             if (this.capacityArray.length <= this.capacity) {
-                console.log(this.capacityArray.length)
+                console.log(this.capacityArray.length);
                 this.capacityArray.push(car);
                 this.intialCapacity++;
                 return false;
             }
         } else {
+            ObserverPattern.subscribe(observer);
+            ObserverPattern.notify();
             return true;
         }
     };
     unPark = () => {
-        this.capacityArray.pop();
         const isLotFull = this.#checkLotIsFull(this.capacityArray, this.capacity);
-        if (isLotFull === true) {
-            return true;
+        if(isLotFull=== true) {
+            this.capacityArray.pop();
+            ObserverPattern.notifyOwner();
+            return isLotFull;
         }
-        return false;
+        else {
+            this.capacityArray.pop();
+            return (!isLotFull) ;
+        }
     };
 
-    #checkLotIsFull = (capacityArray, capacity) => {
+    #checkLotIsFull = (capacityArray, capacity,observer) => {
         let isFull = true;
         console.log(capacityArray.length);
         if (capacityArray.length === capacity) {
-            Test.subscribe();
-            Test.notify();
             return isFull;
         } else {
             isFull = false;
