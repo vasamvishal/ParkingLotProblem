@@ -58,7 +58,7 @@ class Parking {
         {
             if(this.capacityArray[i] === car)
             {
-                throw new Error("Same car cannot be entered");
+                throw new Error("Same car cannot be parked");
             }
         }
         return true;
