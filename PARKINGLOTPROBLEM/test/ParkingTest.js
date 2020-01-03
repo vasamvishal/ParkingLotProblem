@@ -1,7 +1,7 @@
 const assert = require('assert');
-const Parking = require("../PARKINGLOTPROBLEM/Parking");
-const ParkingOwner=require("../PARKINGLOTPROBLEM/ParkingOwner");
-const AirportSecurity=require("../PARKINGLOTPROBLEM/AirportSecurity");
+const Parking = require("../main/Parking");
+const ParkingOwner=require("../main/ParkingOwner");
+const AirportSecurity=require("../main/AirportSecurity");
 let car = new Object();
 let car1=new Object();
 const parkingOwner=new ParkingOwner();
