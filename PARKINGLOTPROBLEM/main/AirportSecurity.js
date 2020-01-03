@@ -1,13 +1,12 @@
 
 
 class AirportSecurity{
-    isFull;
+    _isFull;
     get isFull() {
         return this._isFull;
     }
     parkinglotIsFull() {
-        if (this.isFull = true) {
-            console.log("Parking lot is full");
+        this._isFull = true
+            console.log("Owner:Parking lot is full");
         }
-    }
 }module.exports=AirportSecurity;

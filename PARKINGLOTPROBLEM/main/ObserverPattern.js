@@ -12,13 +12,14 @@ class ObserverPattern {
     {
         for( let i=0; i< this.array.length;i++)
         {
-            console.log(this.array[i],"Have been notified");
+             this.array[i].parkinglotIsFull();
         }
     }
 
     notifyOwner()
     {
-        console.log("Space is available again");
+        let result=this.array.pop();
+        console.log(result,"Space is available again");
     }
 
 }

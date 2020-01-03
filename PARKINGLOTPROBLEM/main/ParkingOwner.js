@@ -5,9 +5,7 @@ class ParkingOwner{
     }
 
     parkinglotIsFull() {
-
-        if (this._isFull = true) {
-            console.log("Parking lot is full");
-        }
+        this._isFull = true;
+        console.log(this.isFull);
     }
 }module.exports=ParkingOwner;

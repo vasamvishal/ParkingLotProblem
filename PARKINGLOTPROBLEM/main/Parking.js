@@ -9,14 +9,8 @@ class Parking {
         this.capacity = capacity;
     }
 
-    park = (car,observer) => {
-        for(let i=0;i<this.capacityArray.length;i++)
-        {
-            if(this.capacityArray[i] === car)
-            {
-               throw new Error("Same car cannot be entered");
-            }
-        }
+    park = (car, observer) => {
+        if(this.#checkIfVehicleIsNotAvailableForParking(car) === true) {
         const isLotFull = this.#checkLotIsFull(this.capacityArray, this.capacity);
         if (isLotFull === false) {
             if (this.capacityArray.length <= this.capacity) {
@@ -30,21 +24,24 @@ class Parking {
             ObserverPattern.notify();
             return true;
         }
+          }
     };
-    unPark = () => {
+    unPark = (car, observer) => {
+        if(this.#checkIfVehicleIsAvailableForUnParking(car) ===true) {
         const isLotFull = this.#checkLotIsFull(this.capacityArray, this.capacity);
-        if(isLotFull=== true) {
+        if (isLotFull === true) {
             this.capacityArray.pop();
+            ObserverPattern.subscribe(observer);
             ObserverPattern.notifyOwner();
             return isLotFull;
-        }
-        else {
+        } else {
             this.capacityArray.pop();
-            return (!isLotFull) ;
+            return (!isLotFull);
         }
+         }
     };
 
-    #checkLotIsFull = (capacityArray, capacity,observer) => {
+    #checkLotIsFull = (capacityArray, capacity) => {
         let isFull = true;
         console.log(capacityArray.length);
         if (capacityArray.length === capacity) {
@@ -54,6 +51,32 @@ class Parking {
             return isFull;
         }
     };
+
+    #checkIfVehicleIsNotAvailableForParking=(car)=>
+    {
+        for(let i=0;i<this.capacityArray.length;i++)
+        {
+            if(this.capacityArray[i] === car)
+            {
+                throw new Error("Same car cannot be entered");
+            }
+        }
+        return true;
+    }
+
+    #checkIfVehicleIsAvailableForUnParking=(car)=>
+    {
+        for(let i=0;i<this.capacityArray.length;i++)
+        {
+            if(this.capacityArray[i] !== car)
+            {
+                throw new Error("No car available to unpark");
+            }
+        }
+        return true;
+    }
+
+
 }
 
 module.exports = Parking;
